@@ -39,7 +39,7 @@
 
     function explorerPreview(e) {
         console.log('Previewed:', e);
-        sendEventToServer('preview', e);
+        sendEventToServer('preview', e.file);
     }
 
     function explorerDownload(e) {
@@ -75,12 +75,13 @@
             e: e
         };
 
+        console.log('localData:', JSON.stringify(localData));
+
         $.ajax({
             url: "{{ url_for('event') }}",
             type: 'POST',
             data: JSON.stringify(localData),
             contentType: 'application/json;charset=UTF-8',
-
         });
     };
     

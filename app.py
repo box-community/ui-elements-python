@@ -1,3 +1,4 @@
+import json
 from flask import Flask, render_template,request,jsonify
 from dotenv import load_dotenv
 import os
@@ -10,15 +11,16 @@ load_dotenv()
 token = os.getenv('DEVELOPER_TOKEN')
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def index_page():
+    return explorer.explorer(token=token)
 
 @app.route('/event/', methods=['POST'])
 def event():
     request_data = request.get_json()
+    print('***********************************************************')
     print(request_data)
- 
-    return 'OK'
+    print('***********************************************************')
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 @app.route('/explorer/')
 def explorer_page():

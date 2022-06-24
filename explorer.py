@@ -1,21 +1,53 @@
 from flask import Flask, render_template
 
+
 def explorer(token):
     token = token
     rootFolderId = 0
-    options = {
-        'container' : '.explorer',
-        'sortBy' : 'name',
-        'sortDirection' : 'ASC',
-        'logoUrl' : 'box',
-        'canPreview' : True,
-        'canDownload' : True,
-        'canDelete' : True,
-        'canRename' : True,
-        'canUpload' : True,
-        'canCreateNewFolder' : True,
-        'canShare' : True,
-        'canSetShareAccess' : True,
-        'defaultView' : 'files',
+
+    optionsSidebar = {
+        'hasActivityFeed': True,
+        'hasMetadata': True,
+        'hasSkills': True,
+        'hasVersions': True,
+        'detailsSidebarProps': {
+            'hasProperties': True,
+            'hasNotices': True,
+            'hasAccessStats': True,
+            'hasClassification': True,
+            'hasRetentionPolicy': True,
+        },
     }
-    return render_template('explorer.html', token=token,rootFolderId=rootFolderId,options=options)
+
+    optionsPreviewer = {
+        'logoUrl': 'box',
+        'contentSidebarProps':optionsSidebar,
+    }
+
+    optionsUploader = {
+    }
+
+    options = {
+        'container': '.explorer',
+        'currentFolderId': rootFolderId,
+        'logoUrl': 'box',
+
+        'defaultView': 'files',
+        'sortBy': 'name',
+        'sortDirection': 'ASC',
+
+        'canPreview': True,
+        'canDownload': True,
+        'canDelete': True,
+        'canRename': True,
+        'canUpload': True,
+        'canCreateNewFolder': True,
+        'canShare': True,
+        'canSetShareAccess': True,
+
+        'contentPreviewProps': optionsPreviewer,
+        'contentUploaderProps': optionsUploader,
+
+    }
+
+    return render_template('explorer.html', token=token, rootFolderId=rootFolderId, options=options)
