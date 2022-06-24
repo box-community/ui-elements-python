@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+{% include 'nav.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="explorer"></div>
+<script>
+    var rootFolderId = '{{ rootFolderId }}';
+    var accessToken = '{{ token }}';
+    var options = JSON.parse('{{ options | tojson | safe }}');
+
+    // console.log('rootFolderId:',rootFolderId)
+    // console.log('accessToken:', accessToken)
+    console.log('options:', options);
+
+    var contentExplorer = new Box.ContentExplorer();
+    console.log('ContentExplorer:', contentExplorer);
+
+    contentExplorer.addListener('select', explorerSelect)
+    contentExplorer.addListener('rename', explorerRename)
+    contentExplorer.addListener('preview', explorerPreview)
+    contentExplorer.addListener('download', explorerDownload)
+    contentExplorer.addListener('delete', explorerDelete)
+    contentExplorer.addListener('upload', explorerUpload)
+    contentExplorer.addListener('navigate', explorerNavigate)
+    contentExplorer.addListener('create', explorerCreate)
+
+    function explorerSelect(e) {
+        console.log('Selected:', e);
+        sendEventToServer('select', e);
+    }
+
+    function explorerRename(e) {
+        console.log('Renamed:', e);
+        sendEventToServer('rename', e);
+    }
+
+    function explorerPreview(e) {
+        console.log('Previewed:', e);
+        sendEventToServer('preview', e);
+    }
+
+    function explorerDownload(e) {
+        console.log('Downloaded:', e);
+        sendEventToServer('download', e);
+    }
+
+    function explorerDelete(e) {
+        console.log('Deleted:', e);
+        sendEventToServer('delete', e);
+    }
+
+    function explorerUpload(e) {
+        console.log('Uploaded:', e);
+        sendEventToServer('upload', e);
+    }
+
+
+    function explorerNavigate(e) {
+        console.log('Navigated:', e);
+        sendEventToServer('navigate', e);
+    }
+
+    function explorerCreate(e) {
+        console.log('Created:', e);
+        sendEventToServer('create', e);
+    }
+
+    function sendEventToServer(eventType, e) {
+
+        var localData = {
+            eventType: eventType,
+            e: e
+        };
+
+        $.ajax({
+            url: "{{ url_for('event') }}",
+            type: 'POST',
+            data: JSON.stringify(localData),
+            contentType: 'application/json;charset=UTF-8',
+
+        });
+    };
+    
+
+    contentExplorer.show(rootFolderId, accessToken, options);
+</script>
+
+{% endblock %}
