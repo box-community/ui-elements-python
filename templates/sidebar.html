@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block element_scripts %}
+<!-- Latest version of Box Content Preview for en-US locale -->
+<script src="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/sidebar.js"></script>
+<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/sidebar.css" />
+{% endblock %}
+
+{% block content %}
+
+<div class="sidebar"></div>
+
+<script>
+    var file_id = '{{ file_id }}';
+    var accessToken = '{{ token }}';
+    var options = JSON.parse('{{ options | tojson | safe }}');
+
+    console.log('options:', options);
+
+    var sidebar = new Box.ContentSidebar();
+    console.log('Sidebar:', sidebar);
+
+
+    function previewerViewer(viewer) {
+        console.log('viewer object:', viewer);
+    }
+
+    function previewerLoad(e) {
+        console.log('load:', e);
+        sendEventToServer('load', e.file);
+    }
+
+    function previewerNavigate(e) {
+        console.log('navigate:', e);
+        sendEventToServer('navigate', e);
+    }
+
+    function previewerNotification(e) {
+        console.log('notification:', e);
+        sendEventToServer('notification', e);
+    }
+
+    function previewerViewerEvent(e) {
+        console.log('viewer event:', e);
+        sendEventToServer('viewerevent', e);
+    }
+
+
+    function sendEventToServer(eventType, e) {
+
+        var localData = {
+            eventType: eventType,
+            e: e
+        };
+
+        $.ajax({
+            url: "{{ url_for('event') }}",
+            type: 'POST',
+            data: JSON.stringify(localData),
+            contentType: 'application/json;charset=UTF-8',
+        });
+    };
+
+
+    sidebar.show(file_id, accessToken, options);
+</script>
+
+{% endblock %}
