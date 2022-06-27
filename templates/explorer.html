@@ -11,8 +11,6 @@
     var accessToken = '{{ token }}';
     var options = JSON.parse('{{ options | tojson | safe }}');
 
-    // console.log('rootFolderId:',rootFolderId)
-    // console.log('accessToken:', accessToken)
     console.log('options:', options);
 
     var contentExplorer = new Box.ContentExplorer();
