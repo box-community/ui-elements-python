@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
 
-def explorer(token):
+def explorer(active_page,token):
     token = token
     rootFolderId = 0
 
@@ -50,4 +50,4 @@ def explorer(token):
 
     }
 
-    return render_template('explorer.html', token=token, rootFolderId=rootFolderId, options=options)
+    return render_template('explorer.html',active_page=active_page, token=token, rootFolderId=rootFolderId, options=options)

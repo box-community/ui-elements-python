@@ -14,11 +14,7 @@
   <!-- polyfill.io only loads the polyfills your browser needs -->
   <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,Intl"></script>
 
-  <!-- Latest version of the explorer css for your locale -->
-  <link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/explorer.css" />
-
-  <!-- Latest version of the explorer js for your locale -->
-  <script src="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/explorer.js"></script>
+  {% block element_scripts %} {% endblock %}
 
   <title>{% block title %} {% endblock %}</title>
 
@@ -29,7 +25,20 @@
   {% include 'header.html' %}
   <div class="main">
     <div class="nav">
-      {% block nav %} {% endblock %}
+      <ul class="nav flex-column">
+        <a class="navbar-brand" href="/">UI Elements</a>
+        <li class="nav-item">
+          <a class="nav-link {% if active_page=='explorer' %}active{%endif %}" aria-current="page" href="/explorer">Explorer</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if active_page=='previewer-single' %}active{%endif %}" aria-current="page"
+            href="/previewer-single">Previewer<br>(single file)</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if active_page=='previewer-multi' %}active{%endif %}" aria-current="page"
+            href="/previewer-multi">Previewer<br>(multi file)</a>
+        </li>
+      </ul>
     </div>
     <div class="element">
       {% for message in get_flashed_messages() %}
@@ -44,10 +53,6 @@
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
