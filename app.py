@@ -3,7 +3,7 @@ from flask import Flask,request
 from dotenv import load_dotenv
 import os
 
-import explorer,previewer,sidebar,uploader
+import explorer,previewer,sidebar,uploader,picker
 
 app = Flask(__name__)
 
@@ -52,6 +52,18 @@ def uploader_page():
 @app.route('/uploader-popup/')
 def uploader_popup_page():
     return uploader.uploader(active_page='uploader-popup',token=token,folder_id=uploader_folder_id,isPopup=True)
+
+@app.route('/picker/')
+def picker_page():
+    return picker.picker(active_page='picker',token=token,folder_id=uploader_folder_id)
+
+@app.route('/picker-pdf/')
+def picker_pdf_page():
+    return picker.picker(active_page='picker-pdf',token=token,folder_id=uploader_folder_id)
+
+@app.route('/picker-popup/')
+def picker_popup_page():
+    return picker.picker(active_page='picker-popup',token=token,folder_id=uploader_folder_id,isPopup=True)
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000

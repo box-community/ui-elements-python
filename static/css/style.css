@@ -57,7 +57,39 @@ html {
 }
 
 .upload-overlay{
+    margin-left: 100px;
+    position: absolute;
+    width: 600px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+}
+
+.picker{
+    height: 100%;
+    padding: 10px;
+}
+
+.picker-modal-base{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0%;
+}
+
+.picker-modal{
+    height: 100%;
+
+}
+
+.picker-overlay{
+        margin-left: 100px;
         position: absolute;
+        width: 600px;
+        height: 400px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
