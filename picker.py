@@ -1,4 +1,3 @@
-from distutils import extension
 from flask import render_template
 
 def picker(active_page, token, folder_id = 0,isPopup=False):
