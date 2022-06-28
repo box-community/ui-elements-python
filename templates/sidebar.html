@@ -20,48 +20,6 @@
     var sidebar = new Box.ContentSidebar();
     console.log('Sidebar:', sidebar);
 
-
-    function previewerViewer(viewer) {
-        console.log('viewer object:', viewer);
-    }
-
-    function previewerLoad(e) {
-        console.log('load:', e);
-        sendEventToServer('load', e.file);
-    }
-
-    function previewerNavigate(e) {
-        console.log('navigate:', e);
-        sendEventToServer('navigate', e);
-    }
-
-    function previewerNotification(e) {
-        console.log('notification:', e);
-        sendEventToServer('notification', e);
-    }
-
-    function previewerViewerEvent(e) {
-        console.log('viewer event:', e);
-        sendEventToServer('viewerevent', e);
-    }
-
-
-    function sendEventToServer(eventType, e) {
-
-        var localData = {
-            eventType: eventType,
-            e: e
-        };
-
-        $.ajax({
-            url: "{{ url_for('event') }}",
-            type: 'POST',
-            data: JSON.stringify(localData),
-            contentType: 'application/json;charset=UTF-8',
-        });
-    };
-
-
     sidebar.show(file_id, accessToken, options);
 </script>
 
