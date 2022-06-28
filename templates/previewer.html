@@ -2,8 +2,8 @@
 
 {% block element_scripts %}
 <!-- Latest version of Box Content Preview for en-US locale -->
-<script src="https://cdn01.boxcdn.net/platform/preview/2.81.0/en-US/preview.js"></script>
-<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/preview/2.81.0/en-US/preview.css" />
+<script src="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/preview.js"></script>
+<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/preview.css" />
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 
     console.log('options:', options);
 
-    var contentPreviewer = new Box.Preview();
+    var contentPreviewer = new Box.ContentPreview();
     console.log('Content Previewer:', contentPreviewer);
 
     contentPreviewer.addListener('viewer', previewerViewer);

@@ -1,9 +1,9 @@
 import json
-from flask import Flask, render_template,request,jsonify
+from flask import Flask,request
 from dotenv import load_dotenv
 import os
 
-import explorer,previewer,sidebar,preview_sidebar
+import explorer,previewer,sidebar
 
 app = Flask(__name__)
 
@@ -34,15 +34,16 @@ def previewer_page_single():
 
 @app.route('/previewer-multi/')
 def previewer_page_multi():
-    return previewer.previewer(active_page='previewer-multi',token=token,file_id=previewer_file_list[0],file_list=previewer_file_list)    
+    return previewer.previewer(active_page='previewer-multi',token=token,file_id=previewer_file_list[0],file_list=previewer_file_list)
+
+@app.route('/previewer-multi-sidebar/')
+def previewer_page_multi_sidebar():
+    return previewer.previewer(active_page='previewer-multi-sidebar',token=token,file_id=previewer_file_list[0],file_list=previewer_file_list)     
 
 @app.route('/sidebar/')
 def sidebar_page():
     return sidebar.sidebar(active_page='sidebar',token=token,file_id=previewer_file_id)
 
-@app.route('/preview-sidebar/')
-def preview_sidebar_page():
-    return preview_sidebar.preview_sidebar(active_page='preview-sidebar',token=token,file_id=previewer_file_id)    
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000
