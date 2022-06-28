@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block element_scripts %}
+<!-- Latest version of Box Content Preview for en-US locale -->
+<script src="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/uploader.js"></script>
+<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/15.0.0/en-US/uploader.css" />
+{% endblock %}
+
+{% block content %}
+
+<div class="uploader"></div>
+
+<script>
+    var folder_id = '{{ folder_id }}';
+    var accessToken = '{{ token }}';
+    var options = JSON.parse('{{ options | tojson | safe }}');
+
+    console.log('options:', options);
+
+    var contentUploader = new Box.ContentUploader();
+    console.log('Content Uploader:', contentUploader);
+
+    contentUploader.addListener('close', uploaderClose);
+    contentUploader.addListener('complete', uploaderComplete);
+    contentUploader.addListener('upload', uploaderUpload);
+    contentUploader.addListener('error', uploaderError);
+
+    function uploaderClose(e) {
+        console.log('close:', e);
+        sendEventToServer('close', e);
+    }
+
+    function uploaderComplete(e) {
+        console.log('complete:', e);
+        sendEventToServer('complete', e);
+    }
+
+    function uploaderUpload(e) {
+        console.log('upload:', e);
+        sendEventToServer('upload', e);
+    }
+
+    function uploaderError(e) {
+        console.log('error:', e);
+        sendEventToServer('error', e);
+    }
+
+    function sendEventToServer(eventType, e) {
+
+        var localData = {
+            eventType: eventType,
+            e: e
+        };
+
+        $.ajax({
+            url: "{{ url_for('event') }}",
+            type: 'POST',
+            data: JSON.stringify(localData),
+            contentType: 'application/json;charset=UTF-8',
+        });
+    };
+
+    contentUploader.show(folder_id, accessToken, options);
+</script>
+
+{% endblock %}

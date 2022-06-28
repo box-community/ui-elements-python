@@ -3,7 +3,7 @@ from flask import Flask,request
 from dotenv import load_dotenv
 import os
 
-import explorer,previewer,sidebar
+import explorer,previewer,sidebar,uploader
 
 app = Flask(__name__)
 
@@ -11,6 +11,7 @@ load_dotenv()
 token = os.getenv('DEVELOPER_TOKEN')
 previewer_file_id = os.getenv('PREVIEWER_FILE_ID')
 previewer_file_list = os.getenv('PREVIEWER_FILE_LIST').split(',')
+uploader_folder_id = os.getenv('UPLOADER_FOLDER_ID')
 
 @app.route('/')
 def index_page():
@@ -44,6 +45,9 @@ def previewer_page_multi_sidebar():
 def sidebar_page():
     return sidebar.sidebar(active_page='sidebar',token=token,file_id=previewer_file_id)
 
+@app.route('/uploader/')
+def uploader_page():
+    return uploader.uploader(active_page='uploader',token=token,folder_id=uploader_folder_id)
 
 if __name__ == '__main__':
     # run app in debug mode on port 5000

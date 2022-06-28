@@ -1,4 +1,3 @@
-from typing import Collection
 from flask import Flask, render_template
 
 
