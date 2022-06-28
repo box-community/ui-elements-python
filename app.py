@@ -49,6 +49,10 @@ def sidebar_page():
 def uploader_page():
     return uploader.uploader(active_page='uploader',token=token,folder_id=uploader_folder_id)
 
+@app.route('/uploader-popup/')
+def uploader_popup_page():
+    return uploader.uploader(active_page='uploader-popup',token=token,folder_id=uploader_folder_id,isPopup=True)
+
 if __name__ == '__main__':
     # run app in debug mode on port 5000
     app.run(debug=True, port=5000)

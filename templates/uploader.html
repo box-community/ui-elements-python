@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div class="uploader"></div>
+<div class="uploader {% if active_page=='uploader-popup' %}uploader-modal-base{%endif %}"></div>
 
 <script>
     var folder_id = '{{ folder_id }}';

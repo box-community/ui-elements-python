@@ -43,6 +43,27 @@ html {
     height: 100%;
 }
 
+.uploader-modal-base{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 0%;
+}
+
+.upload-modal{
+    height: 100%;
+
+}
+
+.upload-overlay{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid #ccc;
+}
+
 
 
 .app-title {
