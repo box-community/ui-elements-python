@@ -68,3 +68,6 @@ def picker_popup_page():
 if __name__ == '__main__':
     # run app in debug mode on port 5000
     app.run(debug=True, port=5000)
+
+    #run app in production mode
+    #app.run(debug=False, host='0.0.0.0')
