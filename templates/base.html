@@ -26,7 +26,7 @@
   <div class="main">
     <div class="nav">
       <ul class="nav flex-column">
-        <a class="navbar-brand" href="/">UI Elements</a>
+        <a class="navbar-brand" href="{{ url_for('index_page') }}">UI Elements</a>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='explorer' %}active{%endif %}" aria-current="page" href="{{ url_for('explorer_page') }}">Explorer</a>
         </li>
