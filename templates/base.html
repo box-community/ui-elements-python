@@ -28,43 +28,43 @@
       <ul class="nav flex-column">
         <a class="navbar-brand" href="/">UI Elements</a>
         <li class="nav-item">
-          <a class="nav-link {% if active_page=='explorer' %}active{%endif %}" aria-current="page" href="/explorer">Explorer</a>
+          <a class="nav-link {% if active_page=='explorer' %}active{%endif %}" aria-current="page" href="{{ url_for('explorer_page') }}">Explorer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='previewer-single' %}active{%endif %}" aria-current="page"
-            href="/previewer-single">Previewer<br>(single file)</a>
+            href="{{ url_for('previewer_page_single') }}">Previewer<br>(single file)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='previewer-multi' %}active{%endif %}" aria-current="page"
-            href="/previewer-multi">Previewer<br>(multi file)</a>
+            href="{{ url_for('previewer_page_multi') }}">Previewer<br>(multi file)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='previewer-multi-sidebar' %}active{%endif %}" aria-current="page"
-            href="/previewer-multi-sidebar">Previewer<br>(w/ sidebar)</a>
+            href="{{ url_for('previewer_page_multi_sidebar') }}">Previewer<br>(w/ sidebar)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='sidebar' %}active{%endif %}" aria-current="page"
-            href="/sidebar">Sidebar</a>
+            href="{{ url_for('sidebar_page') }}">Sidebar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='uploader' %}active{%endif %}" aria-current="page"
-            href="/uploader">Uploader</a>
+            href="{{ url_for('uploader_page') }}">Uploader</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='uploader-popup' %}active{%endif %}" aria-current="page"
-            href="/uploader-popup">Uploader<br>(pop-up)</a>
+            href="{{ url_for('uploader_popup_page') }}">Uploader<br>(pop-up)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='picker' %}active{%endif %}" aria-current="page"
-            href="/picker">Picker</a>
+            href="{{ url_for('picker_page') }}">Picker</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='picker-pdf' %}active{%endif %}" aria-current="page"
-            href="/picker-pdf">Picker<br>(pdf only)</a>
+            href="{{ url_for('picker_pdf_page') }}">Picker<br>(pdf only)</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {% if active_page=='picker-popup' %}active{%endif %}" aria-current="page"
-            href="/picker-popup">Picker<br>(pop-up)</a>
+            href="{{ url_for('picker_popup_page') }}">Picker<br>(pop-up)</a>
         </li>
       </ul>
     </div>
