@@ -6,7 +6,7 @@ def uploader(active_page, token, folder_id,isPopup=False):
 
     if isPopup:
         modal = {   
-            'buttonLabel': 'Open modal to upload you files',
+            'buttonLabel': 'Open modal to upload your files',
             'buttonClassName': 'btn-primary',
             'modalClassName': 'upload-modal',
             'overlayClassName': 'upload-overlay',

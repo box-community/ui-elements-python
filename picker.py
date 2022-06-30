@@ -6,7 +6,7 @@ def picker(active_page, token, folder_id = 0,isPopup=False):
 
     if isPopup:
         modal = {   
-            'buttonLabel': 'Open modal to select you files',
+            'buttonLabel': 'Open modal to select your files',
             'buttonClassName': 'btn-primary',
             'modalClassName': 'picker-modal',
             'overlayClassName': 'picker-overlay',
