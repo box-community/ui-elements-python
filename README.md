@@ -6,7 +6,7 @@ Follow the instructions on the medium article:
 
 [Getting started with Box UI Elements using Python & Flask (Part 1)](https://medium.com/@barbosa-rmv/getting-started-with-box-ui-elements-using-python-flask-part-1-922f47299fd)
 
-It wil lguide through:
+It will guide you through:
 - creating a free Box account
 - setting up a Box application
 - creating a folder
