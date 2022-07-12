@@ -24,6 +24,7 @@ $ cd ui-elements-python
 ```bash
 $ python3.10 -m venv venv
 $ source ./venv.bin/activate
+$ pip install -r requirements.txt
 ```
 
 > Create your application environment
