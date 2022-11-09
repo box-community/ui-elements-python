@@ -43,6 +43,10 @@
             href="{{ url_for('previewer_page_multi_sidebar') }}">Previewer<br>(w/ sidebar)</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {% if active_page=='previewer-annotation' %}active{%endif %}" aria-current="page"
+            href="{{ url_for('previewer_annotation') }}">Previewer<br>(w/ annotations)</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link {% if active_page=='sidebar' %}active{%endif %}" aria-current="page"
             href="{{ url_for('sidebar_page') }}">Sidebar</a>
         </li>

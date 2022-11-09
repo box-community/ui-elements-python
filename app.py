@@ -41,6 +41,10 @@ def previewer_page_multi():
 def previewer_page_multi_sidebar():
     return previewer.previewer(active_page='previewer-multi-sidebar',token=token,file_id=previewer_file_list[0],file_list=previewer_file_list)     
 
+@app.route('/previewer-annotations/')
+def previewer_annotation():
+    return previewer.previewer_annotation(active_page='previewer-annotation',token=token,file_id=previewer_file_list[0],file_list=previewer_file_list)  
+
 @app.route('/sidebar/')
 def sidebar_page():
     return sidebar.sidebar(active_page='sidebar',token=token,file_id=previewer_file_id)

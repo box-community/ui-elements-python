@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block element_scripts %}
+<!-- Latest version of Box Content Preview for en-US locale -->
+<script src="https://cdn01.boxcdn.net/platform/elements/16.0.0/en-US/preview.js"></script>
+<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/16.0.0/en-US/preview.css" />
+
+<script src="{{ url_for('static', filename= 'annotations/annotations.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename= 'annotations/annotations.css') }}" />
+
+{% endblock %}
+
+{% block content %}
+
+<div class="previewer"></div>
+
+<script>
+    var file_id = '{{ file_id }}';
+    var accessToken = '{{ token }}';
+    var options = JSON.parse('{{ options | tojson | safe }}');
+
+    console.log('options:', options);
+
+
+    /* global BoxAnnotations */
+    var annotations = new BoxAnnotations();
+
+    options['boxAnnotations'] = annotations;
+
+    var contentPreviewer = new Box.ContentPreview();
+    console.log('Content Previewer:', contentPreviewer);
+
+    contentPreviewer.addListener('viewer', previewerViewer);
+    contentPreviewer.addListener('load', previewerLoad);
+    contentPreviewer.addListener('navigate', previewerNavigate);
+    contentPreviewer.addListener('notification', previewerNotification);
+    contentPreviewer.addListener('viewerevent', previewerViewerEvent);
+
+    // TODO: implement annotator related events
+
+    function previewerViewer(viewer) {
+        console.log('viewer object:', viewer);
+    }
+
+    function previewerLoad(e) {
+        console.log('load:', e);
+        sendEventToServer('load', e.file);
+    }
+
+    function previewerNavigate(e) {
+        console.log('navigate:', e);
+        sendEventToServer('navigate', e);
+    }
+
+    function previewerNotification(e) {
+        console.log('notification:', e);
+        sendEventToServer('notification', e);
+    }
+
+    function previewerViewerEvent(e) {
+        console.log('viewer event:', e);
+        sendEventToServer('viewerevent', e);
+    }
+
+
+    function sendEventToServer(eventType, e) {
+
+        var localData = {
+            eventType: eventType,
+            e: e
+        };
+
+        $.ajax({
+            url: "{{ url_for('event') }}",
+            type: 'POST',
+            data: JSON.stringify(localData),
+            contentType: 'application/json;charset=UTF-8',
+        });
+    };
+
+
+    contentPreviewer.show(file_id, accessToken, options);
+
+</script>
+
+{% endblock %}
