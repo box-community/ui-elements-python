@@ -1,9 +1,7 @@
 from flask import render_template
 
 
-def previewer(active_page, token, file_id, file_list=[]):
-    token = token
-    file_id = file_id
+def previewer(active_page, token, file_id, file_list=[str]):
 
     if active_page == "previewer-multi-sidebar":
 
@@ -45,7 +43,7 @@ def previewer(active_page, token, file_id, file_list=[]):
     )
 
 
-def previewer_annotation(active_page, token, file_id, file_list=[]):
+def previewer_annotation(active_page, token, file_id, file_list=[str]):
 
     contentSidebarProps = {
         "hasActivityFeed": True,
@@ -70,7 +68,7 @@ def previewer_annotation(active_page, token, file_id, file_list=[]):
     isSingle = True if len(file_list) == 0 else False
 
     return render_template(
-        "previewer_annotation.html",
+        "previewer_annotation_alt.html",
         active_page=active_page,
         token=token,
         file_id=file_id,
