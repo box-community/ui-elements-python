@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block element_scripts %}
+<!-- Latest version of Box Content Preview for en-US locale -->
+<script src="https://cdn01.boxcdn.net/platform/elements/16.0.0/en-US/preview.js"></script>
+<link rel="stylesheet" href="https://cdn01.boxcdn.net/platform/elements/16.0.0/en-US/preview.css" />
+
+<script type="module" src="{{ url_for('static', filename= 'annotations/preview_annotations.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="previewer"></div>
+
+<script>
+
+    var file_id = '{{ file_id }}';
+    var accessToken = '{{ token }}';
+    var options = JSON.parse('{{ options | tojson | safe }}');
+
+    console.log('options:', options);
+
+</script>
+
+{% endblock %}
